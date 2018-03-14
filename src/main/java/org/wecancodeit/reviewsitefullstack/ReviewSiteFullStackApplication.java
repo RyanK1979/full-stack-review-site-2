@@ -1,12 +1,12 @@
-package org.wecancodeit.demo;
+package org.wecancodeit.reviewsitefullstack;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ReviewSiteFullStackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(ReviewSiteFullStackApplication.class, args);
 	}
 }
