@@ -47,7 +47,7 @@ public class ReviewPopulator implements CommandLineRunner {
 		Review review2 = new Review(
 				"Awesome series, I binged watched both seasons.  The kids have great chemistry together, and yet it still remains funny through out, I highly recommend "
 						+ "for the handful of people who have yet to watch.",
-				"Stranger Things", "/images/strangerthings.jpg", series, adventure, action, scifi);
+				"Stranger Things", "/images/stranger-things.jpg", series, adventure, action, scifi);
 		reviewRepo.save(review2);
 		Review review3 = new Review(
 				"This series started out so strong. I really lose intrest heavily in the last few years, to the point I didn't even make it through the entirety of the"
