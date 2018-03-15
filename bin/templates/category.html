@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8"></meta>
+	<meta name="viewport"
+		content="width=device-width, intial-scale=1"></meta>
+	<link rel="stylesheet" href="./css/layout.css"></link>
+	<link rel="stylesheet" href="./css/style.css"></link>
+<title>Show Reviews</title>
+</head>
+
+<body>
+	<div class="container">
+	<header class="header">
+		<h1>A list of some of my favorite shows, and Movies</h1>
+	</header>
+	<div class="category-1">
+		<h2>Choose a title</h2>
+	</div>
+	<div class="category-2" th:each="review: ${category.categoryName}">
+		<ul  th:each= "review : ${reviews}">
+			<li><a th:href= "@{review(id=${review.id})}"
+				th:text= "${review.name}"></a></li>	
+			
+				
+		</ul>
+		
+	</div>
+	<footer class="footer">
+		<h2 id="back"><a href="http://localhost:8080/categories">Back to Categories</a></h2>
+	</footer>
+	</div>
+</body>
+</html>
