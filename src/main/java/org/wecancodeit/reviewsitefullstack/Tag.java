@@ -1,6 +1,6 @@
 package org.wecancodeit.reviewsitefullstack;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +13,13 @@ public class Tag {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String tagDescription;
+	private String tag;
 
 	@ManyToMany(mappedBy = "tags")
-	private Collection<Review> reviews;
+	private Set<Review> reviews;
 
-	public Tag(String tagDescription) {
-		this.tagDescription = tagDescription;
+	public Tag(String tag) {
+		this.tag = tag;
 	}
 
 	Tag(long id) {
@@ -31,15 +31,20 @@ public class Tag {
 	}
 
 	public String getTag() {
-		return tagDescription;
+		return tag;
 	}
 
-	public Collection<Review> getReview() {
+	public Set<Review> getReview() {
 		return reviews;
 	}
 
 	@SuppressWarnings("unused")
 	private Tag() {
+	}
+
+	@Override
+	public String toString() {
+		return tag;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package org.wecancodeit.reviewsitefullstack;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -35,9 +35,8 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/tag")
-	public String getATag(@RequestParam(value = "id", required = true) long tagId, Model model) {
-		Tag tag = tagRepo.findOne(tagId);
-		model.addAttribute("tag", tag);
+	public String showOneTag(@RequestParam(value = "id", required = true) long id, Model model) {
+		model.addAttribute("tag", tagRepo.findOne(id));
 		return "tag";
 	}
 
@@ -49,28 +48,50 @@ public class ReviewController {
 
 	@RequestMapping("/categories")
 	public String getCategories(Model model) {
-		Collection<Category> categories = (Collection<Category>) categoryRepo.findAll();
-		model.addAttribute("categories", categories);
+		model.addAttribute("category", categoryRepo.findAll());
 		return "categories";
 	}
 
 	@RequestMapping("/category")
 	public String getCategory(@RequestParam long id, Model model) {
-		Category category = categoryRepo.findOne(id);
-		model.addAttribute("category", category);
-		model.addAttribute("review", reviewRepo.findOne(id));
-		model.addAttribute("reviews", reviewRepo.findByCategory(category));
+		model.addAttribute("category", categoryRepo.findOne(id));
 		return "category";
 	}
 
 	@RequestMapping(value = "/index")
-	public String getAllTables(Model model) {
-		Collection<Review> reviews = (Collection<Review>) reviewRepo.findAll();
-		model.addAttribute("reviews", reviews);
-		Collection<Category> categories = (Collection<Category>) categoryRepo.findAll();
-		model.addAttribute("categories", categories);
+	public String showAllClasses(Model model) {
+		model.addAttribute("categories", categoryRepo.findAll());
+		model.addAttribute("tags", tagRepo.findAll());
+		model.addAttribute("reviews", reviewRepo.findAll());
 		return "index";
 
+	}
+
+	@RequestMapping("/add-tag")
+	public String addTag(@RequestParam(value = "id") Long id, String tag) {
+		if (!tag.equals("")) {
+			Tag tagCreation = tagRepo.findByTag(tag);
+			if (tagCreation == null) {
+				tagCreation = new Tag(tag);
+				tagRepo.save(tagCreation);
+			}
+			Review review = reviewRepo.findOne(id);
+			Set<Tag> reviewTags = review.getTags();
+			if (!reviewTags.contains(tagCreation)) {
+				review.addTag(tagCreation);
+				reviewRepo.save(review);
+			}
+		}
+		return "redirect:/review?id=" + id;
+	}
+
+	@RequestMapping("/remove-tag")
+	public String removeTag(@RequestParam Long tagId, @RequestParam Long reviewId) {
+		Tag deleteTag = tagRepo.findOne(tagId);
+		Review review = reviewRepo.findOne(reviewId);
+		review.removeTag(deleteTag);
+		reviewRepo.save(review);
+		return "redirect:/review?id=" + reviewId;
 	}
 
 }

@@ -2,8 +2,8 @@ package org.wecancodeit.reviewsitefullstack;
 
 import static java.util.Arrays.asList;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,25 +17,17 @@ public class Review {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	private String name;
 	private String image;
 	@Lob
-	private String content;
+	private String review;
 
 	@ManyToOne
 	private Category category;
 
 	@ManyToMany
-	private Collection<Tag> tags;
-
-	public Review(String content, String name, String image, Category category, Tag... tags) {
-		this.name = name;
-		this.content = content;
-		this.image = image;
-		this.category = category;
-		this.tags = new HashSet<>(asList(tags));
-	}
+	private Set<Tag> tags;
 
 	public Review(long id, Category category) {
 		this.id = id;
@@ -50,11 +42,11 @@ public class Review {
 		return image;
 	}
 
-	public String getContent() {
-		return content;
+	public String getReview() {
+		return review;
 	}
 
-	public Collection<Tag> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
 
@@ -62,13 +54,33 @@ public class Review {
 		return category;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
+	}
+
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+
+	public void removeTag(Tag tag) {
+		tags.remove(tag);
+	}
+
+	public Review(Set<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();
+	}
+
+	public Review(String review, String name, String image, Category category, Tag... tags) {
+		this.review = review;
+		this.name = name;
+		this.image = image;
+		this.category = category;
+		this.tags = new HashSet<>(asList(tags));
 	}
 
 	@SuppressWarnings("unused")
