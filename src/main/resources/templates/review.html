@@ -22,11 +22,27 @@
 		</div>
 		
 		<div class="comment-form-section">
+		
 			<form class="add-comment" method="post">
-				<textarea name="comment-content" id="comment-content" placeholder="What are your thoughts on this show?"></textarea>
-				<input type="button" name="submit-comment" value="Submit" id="submit-comment" />
+				<p><input type="text" name="userName" placeholder="What is your name?"></input></p>
+				<p><textarea name="comment-content" id="comment-content" placeholder="What are your thoughts on this show?"></textarea></p>
+				<p><input th:formaction="@{'/review/' + ${review.id} + '/addcomment'}" type="submit" value="Post Comment"></input></p>
 			</form>
 			<div id="comment-section"></div>
+				<h3>Comment section</h3>
+				<div class="single-comment" th:each="comment: ${review.comment}">
+					<span id="comment-top-row">
+						<span><strong>Name:</strong></span>
+						<span th:text="${comment.posterName}"></span>
+					</span>
+					<form action="POST">
+						<button type="submit" class="comment-delete-button" th:formaction="@{'/review/' + ${review.id} + '/deletecomment/' +${currentComment.id}}">
+							<strong>X</strong>
+						</button>	
+					</form>				
+				</div>
+				
+				<p class="comment-text" th:text="${comment.text"></p>
 		
 		</div>
 		

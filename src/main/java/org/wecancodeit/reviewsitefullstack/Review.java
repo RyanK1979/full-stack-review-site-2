@@ -2,6 +2,7 @@ package org.wecancodeit.reviewsitefullstack;
 
 import static java.util.Arrays.asList;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Review {
@@ -25,6 +27,9 @@ public class Review {
 
 	@ManyToOne
 	private Category category;
+
+	@OneToMany(mappedBy = "review")
+	private Collection<Comment> comments;
 
 	@ManyToMany
 	private Set<Tag> tags;
@@ -73,6 +78,10 @@ public class Review {
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();
+	}
+
+	public void addComment(Comment comment) {
+
 	}
 
 	public Review(String review, String name, String image, Category category, Tag... tags) {

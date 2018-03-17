@@ -13,17 +13,17 @@ public class Category {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String category;
+	private String categoryName;
 
 	@OneToMany(mappedBy = "category")
 	private Set<Review> reviews;
 
-	public Category(String category) {
-		this.category = category;
+	public Category(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public String getCategoryName() {
-		return category;
+		return categoryName;
 	}
 
 	@SuppressWarnings("unused")
