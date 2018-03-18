@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>All Tags</title>
+
+	<link rel="stylesheet" href="/css/layout.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+	<header>
+		<h1>Tag Listing</h1>
+	</header>
+	<article>
+		<ul th:each="element: ${tagListing}">
+			<a><a class="plain-tag" th:href="@{'/tag/' + ${element.id}}" th:text="${element.name}"></a>
+			</li>
+		</ul>
+	</article>
+
+	<footer>
+		<a href="/" th:text="|Back to main|"></a>
+	</footer>
+</div>
+</body>
+</html>

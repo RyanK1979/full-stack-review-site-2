@@ -11,35 +11,38 @@
 <body>
 	<div class="container">
 		<header class="header">
-			<h1>Ryan's Reviews</h1>
+			<h1 th:text="|Reviews Tagged With '${currentTag.name}'|"></h1>
 		</header>	
 			<nav>
 				<h3>
 					<a href="/index">Home</a>
 				</h3>
 				<h3>
-					<a href="/tags">Tags</a>
+					<a href="/categories">Categories</a>
 				</h3>
 				<h3>
-					<a href="/categories">Categories</a>
+					<a href="/reviews">Reviews</a>
 				</h3>
 			</nav>
 		
 	
-		<div id="reviews-content">
-		<section>
-			<div th:each="review: ${reviews}">
-				<h2 id="reviews-list">
-					<a th:href="@{/review(id=${review.id})}" th:text="${review.name}"></a>
-				</h2>	
-			</div>
-		</section>	
-		</div>
+		
+		<article>
+			<h3 th:text="|${currentTag.description}|"></h3>
+			<h2>Review Listing</h2>
+
+			<ul th:each="element: ${currentTag.reviews}">
+				<li><strong><a th:href="@{'/review/' + ${element.id}}" th:text="${element.title}"></a></strong>
+					<span th:text="| - ${element.description}|"></span></li>
+				</ul>
+		</article>
+		
+		
 		
 		<footer class="footer">
 		 	<h2><a href="/index">Back to Home</a></h2>
 			</footer>
 			</div>
-<script src="/js/app.js"></script>			
+			<script src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<title th:text="|${currentReview.name} Review|"></title>
+
+	<link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet" />
+	<link rel="stylesheet" href="/css/layout.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+<div class="review-container">
+	<header class="review-header">
+		<h1 th:text="|${currentReview.name}|"></h1>
+		<input type="hidden" id="review-id" th:value="${currentReview.id}" />
+	</header>
+	<main>
+		<div class="review-body">
+			<article class="review-content">
+				<p>
+					<strong th:text="|Category: |" />
+					<span th:text="|${currentReview.category.name}|" />
+				</p>
+				<strong><span>Tags:</span></strong>
+
+				<span class="tag-list">
+						<span class="review-tag" th:each="currentTag: ${currentReview.tags}">
+							<a th:href="@{'/tag/' + ${currentTag.id}}" th:text="|${currentTag.name}|"></a>
+							<a class="tag-delete-x"> x</a>
+							<input type="hidden" th:value="${currentTag.id}" />
+						</span>
+					</span>
+
+
+
+				<img th:src="${currentReview.image}"
+					 th:title="${currentReview.name}" th:alt="${currentReview.name}" />
+
+				<h3>Haiku</h3>
+				<p th:each="element: ${currentReview.content}" th:text="${element}" />
+			</article>
+
+
+			<aside class="input-forms-and-comments">
+
+				<h3>Add Tag</h3>
+				<form method="POST">
+					<p><span>Tag Name:</span>
+						<input type="text" id="tagName"></input></p>
+					<p><span>Tag Description:</span>
+						<input type="text" id="tagDescription"></input></p>
+					<p><input type="button" class="tag-add-button" value="Submit">
+						</input></p>
+				</form>
+
+				<div class="comment-listing">
+					<h3>Comment Listing</h3>
+					<div class="single-comment" th:each="currentComment: ${currentReview.comments}">
+						<div class="comment-top-row">
+								<span id="comment-name">
+									<span><strong>Name:</strong></span>
+									<span th:text="${currentComment.user}"></span>
+								</span>
+							<form action="POST">
+								<button type="submit" class="comment-delete-button" th:formaction="@{'/review/' + ${currentReview.id} + '/deletecomment/' + ${currentComment.id}}">
+									<strong>x</strong>
+								</button>
+							</form>
+						</div>
+						<p class="comment-text" th:text="${currentComment.text}"></p>
+					</div>
+				</div>
+				<div>
+					<h3>Add Comment</h3>
+					<form method="POST">
+						<p>Name:</p>
+						<p><input type="text" name="posterName"></input></p>
+						<p>Comment:</p>
+						<p><textarea class="comment-box" name="commentText"></textarea></p>
+						<p><input class="comment-add-button" th:formaction="@{'/review/' + ${currentReview.id} + '/addcomment'}"
+								  type="submit" value="Post Comment">
+							</input></p>
+					</form>
+				</div>
+			</aside>
+		</div>
+
+	</main>
+	<footer>
+		<a th:href="@{'/category/' + ${currentReview.category.id}}" th:text="|Go back|"></a>
+	</footer>
+</div>
+<script src="/js/tag-ajax.js"></script>
+</body>
+</html>

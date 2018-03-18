@@ -20,7 +20,7 @@
 		<div id="body">
 		<h2>Choose from a Category</h2>
 		<h2 id="categories-list" th:each= "category : ${categories}">
-			<a th:href= "@{category(id=${category.id})}" th:text= "${category.categoryName}"></a>	
+			<a th:href= "@{/category(id=${category.id})}" th:text= "${category.categoryName}"></a>	
 		</h2>
 		</div>
 		

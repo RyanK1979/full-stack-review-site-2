@@ -1,0 +1,71 @@
+#img-review-column p {
+	font-size: 25px;
+}
+
+a {
+	font-size: 30px;
+	color: black;
+}
+
+#remove-tag-button {
+	font-size: 15px;
+	color: white;
+	background-color: black;
+}
+
+#category-content li {
+	font-size: 25px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: white;
+}
+
+body {
+	background: url("/images/background.jpg");
+	background-repeat: no repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+img {
+	height: 250px;
+	width: 350px;
+}
+
+.container {
+	background-color: #DDDCDA;
+}
+
+* {
+	font-family: 'Raleway', sans-serif;
+}
+
+header {
+	border-bottom: 1px solid black;
+}
+
+h1 {
+	font-size: 85px;
+	color: black;
+}
+
+footer p {
+	font-size: 25px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+h2 {
+	font-size: 60px;
+}

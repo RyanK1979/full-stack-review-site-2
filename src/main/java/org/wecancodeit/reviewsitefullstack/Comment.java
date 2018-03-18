@@ -14,20 +14,20 @@ public class Comment {
 
 	@ManyToOne
 	private Review review;
-	private String userName;
 	private String commentText;
+	private String userName;
 
 	@SuppressWarnings("unused")
 	private Comment() {
 	}
 
-	public Comment(Review review, String userName, String commentText) {
-		this.review = review;
+	public Comment(String userName, Review review, String commentText) {
 		this.userName = userName;
+		this.review = review;
 		this.commentText = commentText;
 	}
 
-	public long getId() {
+	public long getCommentId() {
 		return id;
 	}
 
@@ -35,12 +35,12 @@ public class Comment {
 		return review;
 	}
 
-	public String getUser() {
-		return userName;
-	}
-
 	public String getCommentText() {
 		return commentText;
+	}
+
+	public String getUserName() {
+		return userName;
 	}
 
 	@Override

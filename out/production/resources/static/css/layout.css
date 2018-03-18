@@ -1,0 +1,168 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root { -
+	grid-gap: 10px;
+}
+
+.container {
+	display: grid;
+	grid-gap: var(- -grid-gap);
+	grid-template-rows: repeat(4, auto) 150px;
+	max-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.add-remove-tags {
+	display: flex;
+	grid-column: 1/-1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+content-list-items {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.remove-tag {
+	display: flex;
+	width: 100%;
+}
+
+.comment-form-section {
+	display: flex;
+	grid-column: 1/-1;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 50px;
+}
+
+.add-comment {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+textarea {
+	display: flex;
+	width: 270%;
+	padding-bottom: 45px;
+}
+
+.homepage-content {
+	display: flex;
+	grid-column: 1/-1;
+	margin: 30px 80px 0 80px;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+	grid-row: 5/6;
+}
+
+#reviews-content {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+#review-content {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+#img-review-column {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
+}
+
+#img-review-column p {
+	margin: 40px 30px 150px 30px;
+}
+
+#category-content {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+	margin-left: 50px;
+}
+
+#categories-content {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 30px;
+}
+
+#category-content h2 {
+	margin-bottom: 20px;
+}
+
+#category-content li {
+	margin-bottom: 15px;
+}
+
+#category-list {
+	display: flex;
+	justify-content: center;
+}
+
+header {
+	display: flex;
+	margin-top: 3px;
+	flex-direction: column;
+	align-items: center;
+	grid-column: 1/-1;
+}
+
+header nav {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+header nav ul {
+	display: flex;
+	flex-direction: row;
+}
+
+#single-tag-content {
+	margin-left: 50px;
+	margin-top: 30px;
+}
+
+#single-tag-content h2 {
+	margin-bottom: 20px;
+}
+
+#single-tag-content li {
+	margin-bottom: 15px;
+}
+
+#tags-content {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 30px;
+}
+
+.tags {
+	display: flex;
+	justify-content: center;
+}

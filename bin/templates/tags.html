@@ -1,45 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8"></meta>
-	<meta name="viewport"
-		content="width=device-width, intial-scale=1"></meta>
-	<link rel="stylesheet" href="./css/layout.css"></link>
-	<link rel="stylesheet" href="./css/style.css"></link>
-<title>Ryan's Entertainment Reviews</title>
+
+<head lang="en">
+<title>Category</title>
+ 	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" href="./style.css"> 
 </head>
+
 <body>
-	<div class="container">
-		<header class="header">
-			<h1>Tags</h1>
-		</header>	
-			<nav>
-				<h3>
-					<a href="/index">Home</a>
-				</h3>
-				<h3>
-					<a href="/categories">Categories</a>
-				</h3>
-				<h3>
-					<a href="/reviews">Reviews</a>
-				</h3>
-			</nav>
-		
-	
-		
-		<div id="tags-content">
-			<div th:each="tag: ${tags}">
-				<h2 class="tags">
-					<a th:href="@{/tag(id=${tag.id})}" th:text="${tag.tag}"></a>
-				</h2>	
-			</div>
-		</div>	
-		
-		
-		<footer class="footer">
-		 	<h2><a href="/index">Back to Home</a></h2>
-			</footer>
-			</div>
-			<script src="js/app.js"></script>
+	<a href="http://localhost:8080/categories">Home</a>
+	<article>
+		<div th:each="tag: ${tagsModel}">
+			
+			<a th:text="${tag.description}">, </a>
+		</div>
+	</article>
+	<a href="http://localhost:8080/categories">Home</a>
 </body>
 </html>

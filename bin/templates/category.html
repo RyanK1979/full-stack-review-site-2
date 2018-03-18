@@ -19,13 +19,12 @@
 	<div class="category-1">
 		<h2>Choose a title</h2>
 	</div>
-	<div class="category-2" th:each="review: ${category.categoryName}">
-		<ul  th:each= "review : ${reviews}">
-			<li><a th:href= "@{review(id=${review.id})}"
-				th:text= "${review.name}"></a></li>	
+	<div class="category-2">
+	<ul  th:each= "category: ${category.reviews}">
+			<li><a th:href= "@{/review(id=${category.id})}" th:text= "${category.title}"></a></li>	
 			
 				
-		</ul>
+		</ul>	
 		
 	</div>
 	<footer class="footer">

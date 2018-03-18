@@ -7,7 +7,7 @@
 	<meta name="viewport"
 		content="width=device-width, intial-scale=1"></meta>
 		<link rel="stylesheet" href="./css/layout.css"></link>
-		<link rel="stylesheet" href="./css/style.css"></link>
+		<link rel="stylesheet" href="./css/styling.css"></link>
 	<title>Ryan's Entertainment Reviews</title>
 </head>
 <body>
@@ -16,41 +16,37 @@
 		<h1>Ryan's review of </h1> 
 	</header>
 		<div id="review-content">
-		<h2 class="title" th:text="${review.name}"></h2> 
+		<h2 id="title" th:text="${review.title}"></h2> 
 		<p th:text="${review.review}"></p>
 		<img class="photo" th:src="${review.image}" width="500px" height="300px"/>
 		</div>
 		
 		<div class="comment-form-section">
-		
-			<form class="add-comment" method="post">
-				<p><input type="text" name="userName" placeholder="What is your name?"></input></p>
-				<p><textarea name="comment-content" id="comment-content" placeholder="What are your thoughts on this show?"></textarea></p>
-				<p><input th:formaction="@{'/review/' + ${review.id} + '/addcomment'}" type="submit" value="Post Comment"></input></p>
-			</form>
-			<div id="comment-section"></div>
-				<h3>Comment section</h3>
-				<div class="single-comment" th:each="comment: ${review.comment}">
-					<span id="comment-top-row">
-						<span><strong>Name:</strong></span>
-						<span th:text="${comment.posterName}"></span>
-					</span>
-					<form action="POST">
-						<button type="submit" class="comment-delete-button" th:formaction="@{'/review/' + ${review.id} + '/deletecomment/' +${currentComment.id}}">
-							<strong>X</strong>
-						</button>	
-					</form>				
-				</div>
-				
-				<p class="comment-text" th:text="${comment.text"></p>
-		
+			<h3>Comment Section</h3>
+		<form method="POST">
+			<div>
+				<label>Leave your comments: </label> <input type="text" name="commentText" />
+			</div>
+			<div>
+				<label>Enter your Name:</label> <input type="text" name="userName" />
+			</div>
+			<div>
+				<input name="reviewId" type="hidden" th:value="${review.id}" />
+			</div>
+			<div>
+				<button type="submit" th:formaction="@{/add-comment}">Enter</button>
+			</div>
+		</form>
+		<ul th:each="comment: ${review.comments}">
+			<li
+				th:text="'Comment: ' + ${comment.commentText} + ' | UserName: ' + ${comment.userName}"></li>
+		</ul>
 		</div>
-		
 		<div class="add-remove-tags">
 			<form class="remove-tag" method="post">
 				<input name="reviewId" type="hidden" th:value="${review.id}" />
 				<ul class="content-list-items">
-					<li th:each="tag: ${review.tags}"><a th:href="@{/tag(id=${tag.id})}" th:text="${tag.tag}"></a>
+					<li th:each="tag: ${review.tags}"><a th:href="@{/tag(id=${tags})}" th:text="${tag.tagName}"></a>
 					<button id="remove-tag-button" name="tagId" th:value="${tag.id}" th:formaction="@{/remove-tag}">X</button></li>
 				</ul>
 			</form>
@@ -62,7 +58,7 @@
 		</div>
 
 	<footer class="footer">	
-		<h2><a href="http://localhost:8080/reviews">Back to Reviews</a></h2>	
+		<h2><a href="http://localhost:8080/categories">Back to Categories</a></h2>	
 	</footer>
 </div>
 <script src="js/app.js"></script>

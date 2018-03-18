@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<title th:text="|All ${currentCategory.name} Reviews|"></title>
+
+	<link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet" />
+	<link rel="stylesheet" href="/css/layout.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+<div class="container">
+	<header>
+		<h1 th:text="|${currentCategory.name}|"></h1>
+	</header>
+	<article>
+		<h3 th:text="|${currentCategory.description}|"></h3>
+		<h2>Review Listing</h2>
+
+		<ul th:each="element: ${reviewListing}">
+			<li><strong><a th:href="@{'/review/' + ${element.id}}" th:text="${element.title}"></a></strong>
+				<span th:text="| - ${element.description}|"></span></li>
+		</ul>
+	</article>
+
+	<footer>
+		<a href="/" th:text="|Go back|"></a>
+	</footer>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 package org.wecancodeit.reviewsitefullstack;
 
-import java.util.Set;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ public class Category {
 	private String categoryName;
 
 	@OneToMany(mappedBy = "category")
-	private Set<Review> reviews;
+	private Collection<Review> reviews;
 
 	public Category(String categoryName) {
 		this.categoryName = categoryName;
@@ -30,17 +30,17 @@ public class Category {
 	private Category() {
 	}
 
-	public Set<Review> getReviews() {
+	public Collection<Review> getReviews() {
 		return reviews;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	@Override

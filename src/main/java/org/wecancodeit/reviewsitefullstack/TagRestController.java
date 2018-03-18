@@ -2,11 +2,11 @@ package org.wecancodeit.reviewsitefullstack;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class TagRestController {
 
 	@Resource
@@ -15,14 +15,15 @@ public class TagRestController {
 	@Resource
 	TagRepository tagRepo;
 
-	@RequestMapping("/review/{reviewId}/tag/{tagId}/deletetag")
-	public Review deleteTagFromReview(@PathVariable Long reviewId, @PathVariable Long tagId) {
-		Review review = reviewRepo.findOne(reviewId);
-		Tag tag = tagRepo.findOne(tagId);
-		review.removeTag(tag);
+	@RequestMapping("/tags/{id}")
+	public Tag findOneTagName(@PathVariable long id) {
 
-		reviewRepo.save(review);
-		return review;
+		return tagRepo.findOne(id);
 	}
 
+	@RequestMapping("/tags")
+	public Iterable<Tag> findAllTags() {
+		return tagRepo.findAll();
+
+	}
 }

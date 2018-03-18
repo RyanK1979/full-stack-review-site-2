@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,33 +15,37 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Review {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
-	private String image;
-	@Lob
-	private String review;
 
+	@Lob
+	private String description;
+	private String image;
+	private String title;
+
+	@JsonIgnore
 	@ManyToOne
 	private Category category;
 
 	@OneToMany(mappedBy = "review")
 	private Collection<Comment> comments;
 
+	@Lob
+	@ElementCollection
+	private Collection<String> content;
+
+	@JsonIgnore
 	@ManyToMany
 	private Set<Tag> tags;
 
-	public Review(long id, Category category) {
-		this.id = id;
-		this.category = category;
-	}
-
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
 	public String getImage() {
@@ -48,7 +53,7 @@ public class Review {
 	}
 
 	public String getReview() {
-		return review;
+		return description;
 	}
 
 	public Set<Tag> getTags() {
@@ -71,6 +76,14 @@ public class Review {
 		tags.remove(tag);
 	}
 
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+
+	public Collection<String> getContent() {
+		return content;
+	}
+
 	public Review(Set<Tag> tags) {
 		this.tags = tags;
 	}
@@ -84,9 +97,9 @@ public class Review {
 
 	}
 
-	public Review(String review, String name, String image, Category category, Tag... tags) {
-		this.review = review;
-		this.name = name;
+	public Review(String description, String name, String image, Category category, Tag... tags) {
+		this.description = description;
+		this.title = name;
 		this.image = image;
 		this.category = category;
 		this.tags = new HashSet<>(asList(tags));
