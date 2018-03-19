@@ -43,6 +43,12 @@ public class ReviewController {
 		return "redirect:/review?id=" + reviewId;
 	}
 
+	@RequestMapping("tag")
+	public String getATag(@RequestParam Long id, Model model) {
+		model.addAttribute("tag", tagRepo.findOne(id));
+		return "tag";
+	}
+
 	@RequestMapping("/remove-tag")
 	public String removeTag(Long tagId, Long reviewId) {
 		tagRepo.delete(tagId);

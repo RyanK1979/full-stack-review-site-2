@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+<title>Category</title>
+ 	<meta charset="utf-8"></meta>
+	<meta name="viewport"
+		content="width=device-width, intial-scale=1"></meta>
+		<link rel="stylesheet" href="./css/layout.css"></link>
+		<link rel="stylesheet" href="./css/styling.css"></link>
+</head>
+
+<body>
+	<div class="container">	
+		<header class = "header">
+			<h1 th:text="${tag.tagName}"></h1>
+		</header>
+		<article class="category-1">
+			<section class="review-section-one">
+				<article>
+					<h2>Reviews associated with <em th:text="${tag.tagName}"></em></h2>
+				</article>
+			</section>
+			<section class="review-section-two" th:each="tag: ${tag.review}">
+				<ul>
+					<li><h4><a th:href="@{/review(id=${tag.id})}" th:text="${tag.title}"></a></h4></li>
+				</ul>
+			</section>
+		</article>
+		<footer>
+			<section>
+				<h4><a href="http://localhost:8080/categories">Back to Home</a></h4>
+			</section>
+		</footer>
+	</div>
+</body>
+</html>
