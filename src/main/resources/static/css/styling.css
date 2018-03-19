@@ -13,8 +13,20 @@ a {
 	background-color: black;
 }
 
+#back {
+	font-size: 25px;
+	justify-content: center;
+}
 #title {
 	font-size: 50px;
+}
+
+#cat-title {
+	font-size: 35px;
+}
+
+#review-content {
+	margin-left: 10px;
 }
 
 #category-content li {
@@ -43,6 +55,11 @@ body {
 img {
 	height: 250px;
 	width: 350px;
+	margin-left: 10px;
+}
+
+.content-list-items {
+	margin-left: 10px;
 }
 
 .container {
@@ -62,6 +79,28 @@ h1 {
 	color: black;
 }
 
+#review-content {
+	margin-top: 20px;
+}
+
+.category-1 {
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+#body {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.category-2 {
+	font-size: 20px;
+	margin-left: 10px;	
+}
+
+.movie-listings {
+	margin: 10px;
+}
 footer p {
 	font-size: 25px;
 }

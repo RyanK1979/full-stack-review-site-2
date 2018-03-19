@@ -1,5 +1,7 @@
 package org.wecancodeit.reviewsitefullstack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -18,8 +20,9 @@ public class Tag {
 	@ManyToMany(mappedBy = "tags")
 	private Collection<Review> reviews;
 
-	public Tag(String tagName) {
+	public Tag(String tagName, Review... passedReviews) {
 		this.tagName = tagName;
+		reviews = new ArrayList<>(Arrays.asList(passedReviews));
 	}
 
 	Tag(long id) {

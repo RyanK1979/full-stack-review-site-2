@@ -34,4 +34,19 @@ public class ReviewController {
 		return "review";
 	}
 
+	@RequestMapping("/add-tag")
+	public String addContentTag(String tagName, Long reviewId) {
+		// Long longReviewId = Long.parseLong(reviewId);
+		Review appendedReview = reviewRepo.findOne(reviewId);
+		Tag newTag = new Tag(tagName, appendedReview);
+		tagRepo.save(newTag);
+		return "redirect:/review?id=" + reviewId;
+	}
+
+	@RequestMapping("/remove-tag")
+	public String removeTag(Long tagId, Long reviewId) {
+		tagRepo.delete(tagId);
+		return "redirect:/review?id=" + reviewId;
+	}
+
 }

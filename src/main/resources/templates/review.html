@@ -39,14 +39,14 @@
 		</form>
 		<ul th:each="comment: ${review.comments}">
 			<li
-				th:text="'Comment: ' + ${comment.commentText} + ' | UserName: ' + ${comment.userName}"></li>
+				th:text="'Comment: ' + ${comment.commentText} + ' | Name: ' + ${comment.userName}"></li>
 		</ul>
 		</div>
 		<div class="add-remove-tags">
 			<form class="remove-tag" method="post">
 				<input name="reviewId" type="hidden" th:value="${review.id}" />
 				<ul class="content-list-items">
-					<li th:each="tag: ${review.tags}"><a th:href="@{/tag(id=${tags})}" th:text="${tag.tagName}"></a>
+					<li th:each="tag: ${review.tags}"><a th:href="@{/tag(id=${tag.id})}" th:text="${tag.tagName}"></a>
 					<button id="remove-tag-button" name="tagId" th:value="${tag.id}" th:formaction="@{/remove-tag}">X</button></li>
 				</ul>
 			</form>
