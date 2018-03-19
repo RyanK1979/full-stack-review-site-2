@@ -69,7 +69,7 @@ public class ReviewPopulator implements CommandLineRunner {
 	}
 
 	private Tag createTag(String tagName) {
-		Tag t = new Tag(tagName);
-		return tagRepo.save(t);
+		Tag tag = new Tag(tagName);
+		return tagRepo.save(tag);
 	}
 }
